@@ -10,7 +10,7 @@ KookSRV 是一个运行在 Spigot/Paper 上，桥接 Minecraft （MC）服务器
 
 ## 当前还需要完成的工作
 
-KookSRV 刚刚立项，仍需要大量开发。目前仅仅完成了基础的带缓异步 API 包装，普通、KMarkdown 和卡片消息的解析和发送。玩家KOOK绑定等功能仍需开发。
+KookSRV 刚刚立项，仍需要大量开发。
 
 ## 演示
 
@@ -18,6 +18,7 @@ KookSRV 刚刚立项，仍需要大量开发。目前仅仅完成了基础的带
 ![Snipaste_2023-09-30_19-05-28](https://github.com/Ghost-chu/KookSRV/assets/30802565/0b29390a-ca73-4494-a791-06a68044adc5)
 ![Snipaste_2023-09-30_19-05-34](https://github.com/Ghost-chu/KookSRV/assets/30802565/006c1f18-f65c-417c-aa58-fd06698f4650)
 ![Snipaste_2023-09-30_19-07-04](https://github.com/Ghost-chu/KookSRV/assets/30802565/19f138ed-3ab0-48b4-ba40-c51318855fab)
-
+<img width="476" alt="67121873A702B659000BFD10FA68F3F2" src="https://github.com/Ghost-chu/KookSRV/assets/30802565/db5516b1-ac49-4faa-a3dd-29325678310c">
+![Snipaste_2023-09-30_21-39-29](https://github.com/Ghost-chu/KookSRV/assets/30802565/d282a2a7-c808-4598-ba8b-326b1d870174)
 
 
