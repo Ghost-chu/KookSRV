@@ -1,0 +1,26 @@
+config-version: 1
+
+bot-token: ""
+channels:
+  global: "0000000000000"
+invite-link: "00000000000"
+avatar-url: "https://crafthead.net/avatar/{0}/{1}"
+
+feature:
+  minecraft-to-kook:
+    enable: true
+    chat-truncate-length: 256
+    translate-mentions: true
+    require-prefix: ""
+    forward:
+      chat: true
+      join: true
+      quit: true
+      death: true
+      advancement: true
+  kook-to-minecraft:
+    enable: true
+    translate-mentions: true
+    ignore-other-bot-messages: true
+    ignore-users: []
+    require-prefix: ""

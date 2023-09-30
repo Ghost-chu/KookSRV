@@ -1,0 +1,141 @@
+kook-to-minecraft-format: "<light_purple>{0}</light_purple> <aqua>{1}</aqua> <green>:</green> {2}"
+minecraft-to-kook-format: "{0} >> {1}"
+
+channel-name-hover: |
+  <gold>频道描述:</gold> {0}
+sender-name-hover: |
+  <aqua>{0}</aqua>
+  <gold>身份组:</gold> {1}
+file-component-hover: |
+  <gold>大小: </gold> {0}
+
+player-join-message: |
+  [
+    {
+      "type": "card",
+      "theme": "info",
+      "size": "sm",
+      "modules": [
+        {
+          "type": "section",
+          "text": {
+            "type": "plain-text",
+            "content": "{0} 加入了游戏"
+          },
+          "mode": "left",
+          "accessory": {
+            "type": "image",
+            "src": "{1}",
+            "size": "sm"
+          }
+        }
+      ]
+    }
+  ]
+player-quit-message: |
+  [
+    {
+      "type": "card",
+      "theme": "info",
+      "size": "sm",
+      "modules": [
+        {
+          "type": "section",
+          "text": {
+            "type": "plain-text",
+            "content": "{0} 退出了游戏"
+          },
+          "mode": "left",
+          "accessory": {
+            "type": "image",
+            "src": "{1}",
+            "size": "sm"
+          }
+        }
+      ]
+    }
+  ]
+player-death-message: |
+  [
+    {
+      "type": "card",
+      "theme": "danger",
+      "size": "sm",
+      "modules": [
+        {
+          "type": "section",
+          "text": {
+            "type": "plain-text",
+            "content": "{1}\n死亡位置：{2}"
+          },
+          "mode": "left",
+          "accessory": {
+            "type": "image",
+            "src": "{3}",
+            "size": "sm"
+          }
+        }
+      ]
+    }
+  ]
+advancement-message:
+  GOAL: "完成了目标"
+  TASK: "取得了进度"
+  CHALLENGE: "完成了挑战"
+player-unlock-advancement-message: |
+  [
+    {
+      "type": "card",
+      "theme": "danger",
+      "size": "lg",
+      "modules": [
+        {
+          "type": "section",
+          "text": {
+            "type": "kmarkdown",
+            "content": "{0} {1} [{2}]:\n{3}"
+          },
+          "mode": "left",
+          "accessory": {
+            "type": "image",
+            "src": "{4}",
+            "size": "sm"
+          }
+        }
+      ]
+    }
+  ]
+server-up-message: |
+  [
+    {
+      "type": "card",
+      "theme": "success",
+      "size": "lg",
+      "modules": [
+        {
+          "type": "section",
+          "text": {
+            "type": "kmarkdown",
+            "content": ":white_check_mark: 服务器已启动"
+          }
+        }
+      ]
+    }
+  ]
+server-down-message: |
+  [
+    {
+      "type": "card",
+      "theme": "warning",
+      "size": "lg",
+      "modules": [
+        {
+          "type": "section",
+          "text": {
+            "type": "kmarkdown",
+            "content": ":x: 服务器已关闭"
+          }
+        }
+      ]
+    }
+  ]
