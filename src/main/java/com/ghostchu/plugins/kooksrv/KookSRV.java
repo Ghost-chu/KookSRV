@@ -1,9 +1,7 @@
 package com.ghostchu.plugins.kooksrv;
 
-import com.ghostchu.plugins.kooksrv.kook.ChannelManager;
-import com.ghostchu.plugins.kooksrv.kook.GuildManager;
-import com.ghostchu.plugins.kooksrv.kook.HttpApiManager;
-import com.ghostchu.plugins.kooksrv.kook.KookBot;
+import com.ghostchu.plugins.kooksrv.database.DatabaseManager;
+import com.ghostchu.plugins.kooksrv.kook.*;
 import com.ghostchu.plugins.kooksrv.listener.bukkit.BukkitListener;
 import com.ghostchu.plugins.kooksrv.listener.kook.KookListener;
 import com.ghostchu.plugins.kooksrv.text.TextManager;
@@ -25,6 +23,8 @@ public final class KookSRV extends JavaPlugin {
     private ChannelManager channelManager;
     private GuildManager guildManager;
     private HttpApiManager httpApiManager;
+    private DatabaseManager databaseManager;
+    private UserBindManager userBindManager;
 
     @Override
     public void onEnable() {
@@ -41,29 +41,35 @@ public final class KookSRV extends JavaPlugin {
         this.httpApiManager = new HttpApiManager(getBot());
         this.guildManager = new GuildManager(this, getBot(), kookApi());
         this.channelManager = new ChannelManager(this, getBot(), kookApi());
+        this.databaseManager = initDatabase();
+        this.userBindManager = new UserBindManager(this, databaseManager);
         registerListeners();
         registerKookCommands();
     }
 
+    private DatabaseManager initDatabase() {
+        return new DatabaseManager(this);
+    }
+
     private void registerListeners() {
-        getBot().getClient().getCore().getEventManager().registerHandlers( getBot().getClient().getInternalPlugin(), new KookListener(this));
-        if(getConfig().getBoolean("feature.minecraft-to-kook.enable")) {
+        getBot().getClient().getCore().getEventManager().registerHandlers(getBot().getClient().getInternalPlugin(), new KookListener(this));
+        if (getConfig().getBoolean("feature.minecraft-to-kook.enable")) {
             Bukkit.getPluginManager().registerEvents(new BukkitListener(this), this);
         }
     }
 
-    private void registerKookCommands(){
-       JKookCommand listCommand =  new JKookCommand("list", "/")
+    private void registerKookCommands() {
+        JKookCommand listCommand = new JKookCommand("list", "/")
                 .setDescription("用法：/list; 描述：查询服务器当前在线玩家")
                 .setHelpContent("用法：/list; 描述：查询服务器当前在线玩家")
-                .executesUser(((sender, arguments, message) ->{
-                    if(message == null) return;
+                .executesUser(((sender, arguments, message) -> {
+                    if (message == null) return;
                     StringJoiner joiner = new StringJoiner(", ");
                     Collection<? extends Player> players = Bukkit.getOnlinePlayers();
-                    players.forEach(p->joiner.add(ChatColor.stripColor(p.getDisplayName())));
-                    message.reply("服务器当前在线（"+players.size()+"）："+joiner);
+                    players.forEach(p -> joiner.add(ChatColor.stripColor(p.getDisplayName())));
+                    message.reply("服务器当前在线（" + players.size() + "）：" + joiner);
                 }));
-       getBot().getClient().getCommandManager().registerCommand(getBot().getClient().getInternalPlugin(), listCommand);
+        getBot().getClient().getCommandManager().registerCommand(getBot().getClient().getInternalPlugin(), listCommand);
     }
 
     private void initKookBot() throws IOException {
@@ -100,7 +106,15 @@ public final class KookSRV extends JavaPlugin {
         return textManager;
     }
 
-    public HttpApiManager kookApi(){
+    public HttpApiManager kookApi() {
         return httpApiManager;
+    }
+
+    public DatabaseManager database() {
+        return databaseManager;
+    }
+
+    public UserBindManager userBind() {
+        return userBindManager;
     }
 }

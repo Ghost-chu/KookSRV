@@ -6,6 +6,41 @@ channels:
 invite-link: "00000000000"
 avatar-url: "https://crafthead.net/avatar/{0}/{1}"
 
+#MySQL database settings.
+database:
+  #false = use local H2 database.
+  #true = use local/remote MySQL database.
+  mysql: false
+  # The database address. (Only required if mysql is true)
+  host: localhost
+  # The database port. (Only required if mysql is true)
+  port: 3306
+  # The database names. (Only required if mysql is true)
+  database: quickshop
+  # The database username. (Only required if mysql is true)
+  user: root
+  # The database password. (Only required if mysql is true)
+  password: passwd
+  # Set prefix to "none" to remove prefix (Both local and remote will be used).
+  prefix: "kooksrv_"
+  # Should use SSL for database connections?  (Only required if mysql is true)
+  usessl: false
+  # Properties for creating connections, you can add your own properties for datasource here. (Both local and remote will be used).
+  properties:
+    connection-timeout: 60000
+    validation-timeout: 3000
+    idle-timeout: 60000
+    login-timeout: 10
+    maxLifeTime: 60000
+    maximum-pool-size: 8
+    minimum-idle: 2
+    cachePrepStmts: true
+    prepStmtCacheSize: 250
+    prepStmtCacheSqlLimit: 2048
+    useUnicode: true
+    characterEncoding: utf8
+    allowPublicKeyRetrieval: true
+
 feature:
   minecraft-to-kook:
     enable: true
