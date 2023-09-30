@@ -1,5 +1,7 @@
 package com.ghostchu.plugins.kooksrv;
 
+import com.ghostchu.plugins.kooksrv.command.bukkit.CommandManager;
+import com.ghostchu.plugins.kooksrv.command.bukkit.SimpleCommandManager;
 import com.ghostchu.plugins.kooksrv.database.DatabaseManager;
 import com.ghostchu.plugins.kooksrv.kook.*;
 import com.ghostchu.plugins.kooksrv.listener.bukkit.BukkitListener;
@@ -25,6 +27,7 @@ public final class KookSRV extends JavaPlugin {
     private HttpApiManager httpApiManager;
     private DatabaseManager databaseManager;
     private UserBindManager userBindManager;
+    private SimpleCommandManager commandManager;
 
     @Override
     public void onEnable() {
@@ -32,17 +35,21 @@ public final class KookSRV extends JavaPlugin {
         saveDefaultConfig();
         saveDefTranslations();
         this.textManager = new TextManager(this, new File(getDataFolder(), "messages.yml"));
+
         try {
             initKookBot();
         } catch (IOException e) {
             Bukkit.getPluginManager().disablePlugin(this);
             throw new RuntimeException(e);
         }
-        this.httpApiManager = new HttpApiManager(getBot());
-        this.guildManager = new GuildManager(this, getBot(), kookApi());
-        this.channelManager = new ChannelManager(this, getBot(), kookApi());
+        this.httpApiManager = new HttpApiManager(bot());
+        this.guildManager = new GuildManager(this, bot(), kookApi());
+        this.channelManager = new ChannelManager(this, bot(), kookApi());
         this.databaseManager = initDatabase();
         this.userBindManager = new UserBindManager(this, databaseManager);
+        this.commandManager = new SimpleCommandManager(this);
+        getCommand("kooksrv").setExecutor(this.commandManager);
+        getCommand("kooksrv").setTabCompleter(this.commandManager);
         registerListeners();
         registerKookCommands();
     }
@@ -52,7 +59,7 @@ public final class KookSRV extends JavaPlugin {
     }
 
     private void registerListeners() {
-        getBot().getClient().getCore().getEventManager().registerHandlers(getBot().getClient().getInternalPlugin(), new KookListener(this));
+        bot().getClient().getCore().getEventManager().registerHandlers(bot().getClient().getInternalPlugin(), new KookListener(this));
         if (getConfig().getBoolean("feature.minecraft-to-kook.enable")) {
             Bukkit.getPluginManager().registerEvents(new BukkitListener(this), this);
         }
@@ -69,7 +76,7 @@ public final class KookSRV extends JavaPlugin {
                     players.forEach(p -> joiner.add(ChatColor.stripColor(p.getDisplayName())));
                     message.reply("服务器当前在线（" + players.size() + "）：" + joiner);
                 }));
-        getBot().getClient().getCommandManager().registerCommand(getBot().getClient().getInternalPlugin(), listCommand);
+        bot().getClient().getCommandManager().registerCommand(bot().getClient().getInternalPlugin(), listCommand);
     }
 
     private void initKookBot() throws IOException {
@@ -90,7 +97,7 @@ public final class KookSRV extends JavaPlugin {
         }
     }
 
-    public KookBot getBot() {
+    public KookBot bot() {
         return bot;
     }
 
@@ -116,5 +123,9 @@ public final class KookSRV extends JavaPlugin {
 
     public UserBindManager userBind() {
         return userBindManager;
+    }
+
+    public CommandManager commandManager() {
+        return commandManager;
     }
 }

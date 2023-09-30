@@ -83,7 +83,6 @@ public final class JsonUtil {
             JsonElement element = JsonParser.parseString(str);
             return element.isJsonObject() || element.isJsonArray();
         } catch (JsonParseException exception) {
-            exception.printStackTrace();
             return false;
         }
     }

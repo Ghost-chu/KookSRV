@@ -58,10 +58,10 @@ public class UserBindManager {
 
     public CompletableFuture<@Nullable String> bind(UUID player, String kook) {
         return CompletableFuture.supplyAsync(() -> {
-            if (databaseHelper.getBindFromPlayer(player) != null) {
+            if (databaseHelper.getBindFromPlayer(player).join() != null) {
                 return "错误：此玩家已经绑定了一个 KOOK 账号，请先解绑。";
             }
-            if (databaseHelper.getBindFromKook(kook) != null) {
+            if (databaseHelper.getBindFromKook(kook).join() != null) {
                 return "错误：此 KOOK 账号已经绑定了一个玩家，请先解绑。";
             }
             databaseHelper.bind(player, kook);

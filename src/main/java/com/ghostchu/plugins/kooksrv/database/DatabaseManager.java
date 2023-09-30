@@ -27,7 +27,7 @@ public class DatabaseManager {
     private void init() {
         ConfigurationSection databaseSection = plugin.getConfig().getConfigurationSection("database");
         if(databaseSection == null) throw new IllegalArgumentException("Database section 不能为空");
-        HikariConfig config = HikariUtil.createHikariConfig(databaseSection.getConfigurationSection("database.properties"));
+        HikariConfig config = HikariUtil.createHikariConfig(databaseSection.getConfigurationSection("properties"));
         try{
             this.prefix = databaseSection.getString("prefix");
             if(StringUtils.isBlank(this.prefix) || "none".equalsIgnoreCase(this.prefix)){

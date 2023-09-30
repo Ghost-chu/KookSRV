@@ -139,3 +139,24 @@ server-down-message: |
       ]
     }
   ]
+
+
+command-type-mismatch: "<red>此命令需要 <aqua>{0}</aqua> 才能执行</red>"
+no-permission: "<red>权限不足</red>"
+this-minecraft-account-already-bind: "<red>错误：此 Minecraft 角色已绑定了一个 KOOK 账号，请先解绑。"
+enter-code-to-bind-kook: "<green>请在 <yellow>{0}</yellow> 秒内在 KOOK 中将验证码 <aqua>{1}</aqua> 通过 <gold>私信</gold> 方式发送给机器人以完成绑定。"
+this-minecraft-account-had-no-bind: "<red>错误：此 Minecraft 角色未绑定任何 KOOK 账号，无需解绑。"
+bind-failure: "<red>绑定操作失败，原因如下：<gray>{0}</gray>"
+bind-success: "<green>绑定成功，您成功与 <aqua>{0}</aqua> 角色绑定！"
+unbind-failure: "<red>解除绑定失败，原因如下：<gray>{0}</gray>"
+unbind-success: "<green>您已成功解除绑定！"
+internal-error: "<red>由于出现了一个内部错误，操作无法完成，请与服务器管理员联系。"
+command:
+  format: "<green>/{0} {1} <yellow>- {2}"
+  format-disabled: "<red>/{0} {1} <gray>- {2}"
+  description:
+    title: "<light_purple>KookSRV</light_purple> - <yellow>命令帮助列表</yellow>"
+    help: "<yellow>查看 KookSRV 命令帮助列表"
+    link: "<yellow>将此 Minecraft 角色绑定到一个 KOOK 账号上"
+    unlink: "<yellow>解除此 Minecraft 角色所绑定的 KOOK 账号"
+    code: "<yellow>使用验证码以验证 KOOK 操作"

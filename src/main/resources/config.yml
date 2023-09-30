@@ -16,7 +16,7 @@ database:
   # The database port. (Only required if mysql is true)
   port: 3306
   # The database names. (Only required if mysql is true)
-  database: quickshop
+  database: kooksrv
   # The database username. (Only required if mysql is true)
   user: root
   # The database password. (Only required if mysql is true)
