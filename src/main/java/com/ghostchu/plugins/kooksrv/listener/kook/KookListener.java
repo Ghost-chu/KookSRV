@@ -56,6 +56,9 @@ public class KookListener implements Listener {
         if (requriedPrefix != null && !textComponent.toString().startsWith(requriedPrefix)) {
             return;
         }
+        if(!channelManager.getChannels().containsValue(event.getChannel().getId())) {
+            return;
+        }
         User sender = event.getMessage().getSender();
         TextChannel channel = event.getChannel();
         Guild guild = channel.getGuild();
@@ -90,6 +93,9 @@ public class KookListener implements Listener {
             return;
         }
         if (requriedPrefix != null) {
+            return;
+        }
+        if(!channelManager.getChannels().containsValue(event.getChannel().getId())) {
             return;
         }
         User sender = event.getMessage().getSender();
